@@ -36,7 +36,7 @@ final class Extension extends SymfonyExtension
 
     private function registerServices(array $tablesConfig, ContainerBuilder $container): void
     {
-        foreach ($tablesConfig as $key => $tableConfig) {
+        foreach ($tablesConfig as $tableConfig) {
             $name                   = $this->prepareName($tableConfig['name']);
             $tableName              = Schema::TABLE_PREFIX.'_'.$this->prepareName($tableConfig['name']);
             $alias                  = null === $tableConfig['alias'] ? null : $this->prepareName($tableConfig['alias']);
