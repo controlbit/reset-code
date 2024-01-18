@@ -62,7 +62,7 @@ final class ResetCodeManager
 
         $subject = $result->fetchOne();
 
-        if (null === $subject) {
+        if (false === $subject) {
             return null;
         }
 
