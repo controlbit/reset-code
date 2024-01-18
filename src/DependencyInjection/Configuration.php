@@ -43,7 +43,7 @@ class Configuration implements ConfigurationInterface
                                     ->info('Code size. For example 795181 is 6 in size.')
                                 ->end()
                                 ->scalarNode('ttl')
-                                    ->defaultValue(6)
+                                    ->defaultValue(60)
                                     ->info('Time in seconds, for code to be valid. Basically, time to expire.')
                                 ->end()
                                 ->scalarNode('timeout_to_clear_oldest_ms')

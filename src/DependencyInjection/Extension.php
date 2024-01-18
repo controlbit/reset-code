@@ -36,7 +36,7 @@ final class Extension extends SymfonyExtension
 
     private function registerServices(array $tablesConfig, ContainerBuilder $container): void
     {
-        foreach ($tablesConfig as $tableConfig) {
+        foreach ($tablesConfig as $key => $tableConfig) {
             $name                   = $this->prepareName($tableConfig['name']);
             $tableName              = Schema::TABLE_PREFIX.'_'.$this->prepareName($tableConfig['name']);
             $alias                  = null === $tableConfig['alias'] ? null : $this->prepareName($tableConfig['alias']);
@@ -102,7 +102,16 @@ final class Extension extends SymfonyExtension
 
         $definition->setPublic(true);
 
-        $container->setDefinition('reset_code.'.($alias ?? $name), $definition);
+        $container->setDefinition(\sprintf("reset_code.%s", $name), $definition);
+
+        if (null !== $alias) {
+            $container->setDefinition(\sprintf("reset_code.%s", $alias), $definition);
+        }
+
+        if (!$container->has('reset_code.default')) {
+            $container->setDefinition('reset_code.default', $definition);
+            $container->setDefinition(ResetCodeManager::class, $definition);
+        }
     }
 
     private function prepareName(string $str): string
