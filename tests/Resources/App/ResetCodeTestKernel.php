@@ -66,20 +66,33 @@ class ResetCodeTestKernel extends Kernel
         $container->extension(
             'framework',
             [
-                'test'                 => true,
-                'http_method_override' => false,
+                'test'                  => true,
+                'http_method_override'  => false,
+                'handle_all_throwables' => true,
+                'php_errors'            => [
+                    'log' => true,
+                ],
+                'validation'            => [
+                    'email_validation_mode' => 'html5',
+                ],
+                'uid'                   => [
+                    'time_based_uuid_version' => 7,
+                    'default_uuid_version'    => 7,
+                ],
             ]
         );
 
         $container->extension('doctrine', [
             'dbal' => [
-                'driver' => 'pdo_mysql',
-                'url'    => 'mysql://db:db@monorepo-libs-mysql/reset_code_database',
+                'driver'         => 'pdo_mysql',
+                'url'            => 'mysql://db:db@monorepo-libs-mysql/reset_code_database',
+                'use_savepoints' => true,
             ],
             'orm'  => [
                 'auto_generate_proxy_classes' => true,
                 'naming_strategy'             => 'doctrine.orm.naming_strategy.underscore_number_aware',
                 'auto_mapping'                => true,
+                'enable_lazy_ghost_objects'   => true,
                 'mappings'                    => [
                     'Tests' => [
                         'is_bundle' => false,
