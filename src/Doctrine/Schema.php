@@ -17,7 +17,7 @@ final class Schema
     ) {
     }
 
-    public function postGenerateSchema(GenerateSchemaEventArgs $eventArgs)
+    public function postGenerateSchema(GenerateSchemaEventArgs $eventArgs): void
     {
         $schema = $eventArgs->getSchema();
         $table  = $schema->createTable($this->tableName);

@@ -66,8 +66,7 @@ final class ResetCodeManager
             return null;
         }
 
-        // TODO: Find out how to get DB Platform for subject!
-        // Currently it uses same as reset-code connection! Which is bad...
+        /* @phpstan-ignore-next-line */
         return Type::getType(EntityType::NAME)
                    ->convertToPHPValue($subject, $this->connection->getDatabasePlatform())
         ;
@@ -134,7 +133,7 @@ final class ResetCodeManager
             \sprintf('SELECT COUNT(*) FROM %s', $this->tableName)
         );
 
-        return (int)$result->fetchOne();
+        return (int)$result->fetchOne(); // @phpstan-ignore-line
     }
 
     public function totalExpiredCount(): int
@@ -143,7 +142,7 @@ final class ResetCodeManager
             \sprintf('SELECT COUNT(*) FROM %s WHERE expire_at <= NOW()', $this->tableName)
         );
 
-        return (int)$result->fetchOne();
+        return (int)$result->fetchOne(); // @phpstan-ignore-line
     }
 
     private function generateResetCode(int $length): string

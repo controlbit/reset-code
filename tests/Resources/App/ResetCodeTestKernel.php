@@ -89,11 +89,12 @@ class ResetCodeTestKernel extends Kernel
                 'use_savepoints' => true,
             ],
             'orm'  => [
-                'auto_generate_proxy_classes' => true,
-                'naming_strategy'             => 'doctrine.orm.naming_strategy.underscore_number_aware',
-                'auto_mapping'                => true,
-                'enable_lazy_ghost_objects'   => true,
-                'mappings'                    => [
+                'report_fields_where_declared' => true,
+                'auto_generate_proxy_classes'  => true,
+                'naming_strategy'              => 'doctrine.orm.naming_strategy.underscore_number_aware',
+                'auto_mapping'                 => true,
+                'enable_lazy_ghost_objects'    => true,
+                'mappings'                     => [
                     'Tests' => [
                         'is_bundle' => false,
                         'type'      => 'attribute',

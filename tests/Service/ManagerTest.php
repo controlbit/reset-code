@@ -16,12 +16,14 @@ final class ManagerTest extends KernelTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->entityManager = self::getContainer()->get(EntityManagerInterface::class);
+        $this->entityManager = self::getContainer()->get(EntityManagerInterface::class); // @phpstan-ignore-line
     }
 
     public function testGeneratedCode(): void
     {
+        /** @var ResetCodeManager $manager */
         $manager = self::getContainer()->get('reset_code.alpha');
+        /** @var SampleEntity $subject */
         $subject = $this->entityManager->find(SampleEntity::class, 10);
         $code    = $manager->createResetCode($subject);
 
@@ -32,7 +34,9 @@ final class ManagerTest extends KernelTestCase
 
     public function testExpiration(): void
     {
+        /** @var ResetCodeManager $manager */
         $manager = self::getContainer()->get('reset_code.alpha');
+        /** @var SampleEntity $subject */
         $subject = $this->entityManager->find(SampleEntity::class, 10);
         $code    = $manager->createResetCode($subject);
 
@@ -57,7 +61,9 @@ final class ManagerTest extends KernelTestCase
 
     public function testClearingOldest(): void
     {
+        /** @var ResetCodeManager $manager */
         $manager = self::getContainer()->get('reset_code.alpha');
+        /** @var SampleEntity $subject */
         $subject = $this->entityManager->find(SampleEntity::class, 10);
         $code    = $manager->createResetCode($subject);
 
@@ -72,6 +78,7 @@ final class ManagerTest extends KernelTestCase
     {
         /** @var ResetCodeManager $manager */
         $manager = self::getContainer()->get('reset_code.ddos');
+        /** @var SampleEntity $subject */
         $subject = $this->entityManager->find(SampleEntity::class, 10);
 
         $iterations = (10 ** 1) + 1;
@@ -87,7 +94,9 @@ final class ManagerTest extends KernelTestCase
 
     public function testSubjectRetrieval(): void
     {
+        /** @var ResetCodeManager $manager */
         $manager = self::getContainer()->get('reset_code.alpha');
+        /** @var SampleEntity $subject */
         $subject = $this->entityManager->find(SampleEntity::class, 10);
         $code    = $manager->createResetCode($subject);
         $id      = $subject->getIdentifier();

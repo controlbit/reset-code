@@ -6,11 +6,30 @@ namespace Choks\ResetCode\DependencyInjection;
 use Choks\ResetCode\Doctrine\Schema;
 use Choks\ResetCode\Service\ResetCodeManager;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension as SymfonyExtension;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Config\ResetCode\TablesConfig;
 
+/**
+ * @psalm-type TablesConfig = array<string, array{
+ *     name: string,
+ *     alias: string|null,
+ *     connection_name: string,
+ *     code_size: int,
+ *     ttl: int,
+ *     timeout_to_clear_oldest_ms: int,
+ *     allow_subject_duplicates: bool
+ * }>
+ *
+ * @psalm-type Config = array{
+ *     enabled: bool,
+ *     tables: TablesConfig
+ * }
+ */
 final class Extension extends SymfonyExtension
 {
     public function getAlias(): string
@@ -32,8 +51,18 @@ final class Extension extends SymfonyExtension
         }
 
         $this->registerServices($config['tables'], $container);
+
+        $loader = new XmlFileLoader(
+            $container,
+            new FileLocator(__DIR__.'/../Resources/Config')
+        );
+
+        $loader->load('commands.xml');
     }
 
+    /**
+     * @param  TablesConfig             $tablesConfig
+     */
     private function registerServices(array $tablesConfig, ContainerBuilder $container): void
     {
         foreach ($tablesConfig as $tableConfig) {
@@ -101,8 +130,10 @@ final class Extension extends SymfonyExtension
         ]);
 
         $definition->setPublic(true);
+        $definition->addTag('reset_code.manager');
 
-        $container->setDefinition(\sprintf("reset_code.%s", $name), $definition);
+        $id = \sprintf("reset_code.%s", $name);
+        $container->setDefinition($id, $definition);
 
         if (null !== $alias) {
             $container->setDefinition(\sprintf("reset_code.%s", $alias), $definition);
