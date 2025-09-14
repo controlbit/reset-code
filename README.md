@@ -12,7 +12,7 @@ Features
 
 ## Installation
 ```bash
-composer require controlbit/reset-code-bundle
+composer require controlbit/reset-code
 ```
 
 Put in Bundles file of your Symfony project:
