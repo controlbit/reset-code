@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Choks\ResetCode\Tests\Service;
+namespace ControlBit\ResetCode\Tests\Service;
 
-use Choks\ResetCode\Contract\Resettable;
-use Choks\ResetCode\Service\ResetCodeManager;
-use Choks\ResetCode\Tests\KernelTestCase;
-use Choks\ResetCode\Tests\Resources\App\Entity\SampleEntity;
+use ControlBit\ResetCode\Contract\Resettable;
+use ControlBit\ResetCode\Service\ResetCodeManager;
+use ControlBit\ResetCode\Tests\KernelTestCase;
+use ControlBit\ResetCode\Tests\Resources\App\Entity\SampleEntity;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class ManagerTest extends KernelTestCase

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Choks\ResetCode\Command;
+namespace ControlBit\ResetCode\Command;
 
-use Choks\ResetCode\Service\ResetCodeManager;
+use ControlBit\ResetCode\Service\ResetCodeManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

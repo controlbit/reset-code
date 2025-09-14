@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Choks\ResetCode\Tests\Resources\App;
+namespace ControlBit\ResetCode\Tests\Resources\App;
 
-use Choks\DoctrineUtils\DoctrineUtils;
-use Choks\ResetCode\ResetCode;
-use Choks\ResetCode\Tests\Resources\App\Fixtures\AppFixtures;
+use ControlBit\DoctrineUtils\DoctrineUtils;
+use ControlBit\ResetCode\ResetCode;
+use ControlBit\ResetCode\Tests\Resources\App\Fixtures\AppFixtures;
 use DAMA\DoctrineTestBundle\DAMADoctrineTestBundle;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
@@ -85,7 +85,7 @@ class ResetCodeTestKernel extends Kernel
         $container->extension('doctrine', [
             'dbal' => [
                 'driver'         => 'pdo_mysql',
-                'url'            => 'mysql://db:db@monorepo-libs-mysql/reset_code_database',
+                'url'            => 'mysql://db:db@database/db',
                 'use_savepoints' => true,
             ],
             'orm'  => [
@@ -99,7 +99,7 @@ class ResetCodeTestKernel extends Kernel
                         'is_bundle' => false,
                         'type'      => 'attribute',
                         'dir'       => __DIR__.'/Entity',
-                        'prefix'    => 'Choks\ResetCode\Tests\Resources\App',
+                        'prefix'    => 'ControlBit\ResetCode\Tests\Resources\App',
                     ],
                 ],
             ],

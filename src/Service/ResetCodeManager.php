@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Choks\ResetCode\Service;
+namespace ControlBit\ResetCode\Service;
 
-use Choks\DoctrineUtils\Types\EntityType;
+use ControlBit\DoctrineUtils\Types\EntityType;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
 
-final class ResetCodeManager
+final readonly class ResetCodeManager
 {
     public function __construct(
-        private readonly Connection $connection,
-        private readonly string     $tableName,
-        private readonly int        $length,
-        private readonly int        $ttl,
-        private readonly int        $timeoutToClearOldest,
-        private readonly bool       $allowSubjectDuplicates,
+        private Connection $connection,
+        private string     $tableName,
+        private int        $length,
+        private int        $ttl,
+        private int        $timeoutToClearOldest,
+        private bool       $allowSubjectDuplicates,
     ) {
     }
 

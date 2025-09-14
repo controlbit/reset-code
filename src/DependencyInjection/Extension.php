@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Choks\ResetCode\DependencyInjection;
+namespace ControlBit\ResetCode\DependencyInjection;
 
-use Choks\ResetCode\Doctrine\Schema;
-use Choks\ResetCode\Service\ResetCodeManager;
+use ControlBit\ResetCode\Doctrine\Schema;
+use ControlBit\ResetCode\Service\ResetCodeManager;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -12,7 +12,6 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension as SymfonyExtension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Config\ResetCode\TablesConfig;
 
 /**
  * @psalm-type TablesConfig = array<string, array{
@@ -40,7 +39,9 @@ final class Extension extends SymfonyExtension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
-        $config        = $this->processConfiguration($configuration, $configs);
+
+        /** @var Config $config */
+        $config = $this->processConfiguration($configuration, $configs);
 
         if (false === $config['enabled']) {
             return;
@@ -148,8 +149,8 @@ final class Extension extends SymfonyExtension
     private function prepareName(string $str): string
     {
         $str = \trim($str);
-        $str = \str_replace(array(' ', ...\range(0, 9)), '_', $str);
+        $str = \preg_replace('/[\s\d]/', '_', $str);
 
-        return \strtolower($str);
+        return \strtolower((string)$str);
     }
 }

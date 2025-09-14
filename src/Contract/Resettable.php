@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Choks\ResetCode\Contract;
+namespace ControlBit\ResetCode\Contract;
 
 interface Resettable
 {

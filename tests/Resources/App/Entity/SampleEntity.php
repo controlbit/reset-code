@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Choks\ResetCode\Tests\Resources\App\Entity;
+namespace ControlBit\ResetCode\Tests\Resources\App\Entity;
 
-use Choks\ResetCode\Contract\Resettable;
+use ControlBit\ResetCode\Contract\Resettable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]

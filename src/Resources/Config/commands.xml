@@ -12,8 +12,8 @@
         />
 
         <service
-                id="Choks\ResetCode\Command\ClearResetCodesCommand"
-                class="Choks\ResetCode\Command\ClearResetCodesCommand"
+                id="ControlBit\ResetCode\Command\ClearResetCodesCommand"
+                class="ControlBit\ResetCode\Command\ClearResetCodesCommand"
         >
             <argument key="$resetCodeManagers" type="tagged_iterator" tag="reset_code.manager"/>
             <tag name="console.command"/>

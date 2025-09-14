@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Choks\ResetCode\Tests\Resources\App\Fixtures;
+namespace ControlBit\ResetCode\Tests\Resources\App\Fixtures;
 
-use Choks\ResetCode\Tests\Resources\App\Entity\SampleEntity;
+use ControlBit\ResetCode\Tests\Resources\App\Entity\SampleEntity;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

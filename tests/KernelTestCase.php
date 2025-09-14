@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Choks\ResetCode\Tests;
+namespace ControlBit\ResetCode\Tests;
 
-use Choks\ResetCode\Tests\Resources\App\ResetCodeTestKernel;
+use ControlBit\ResetCode\Tests\Resources\App\ResetCodeTestKernel;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class KernelTestCase extends WebTestCase

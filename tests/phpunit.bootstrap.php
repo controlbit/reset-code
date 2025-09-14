@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use Choks\ResetCode\Tests\Resources\App\ResetCodeTestKernel;
+use ControlBit\ResetCode\Tests\Resources\App\ResetCodeTestKernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;

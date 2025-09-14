@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Choks\ResetCode\Tests\DependencyInjection;
+namespace ControlBit\ResetCode\Tests\DependencyInjection;
 
-use Choks\ResetCode\Service\ResetCodeManager;
-use Choks\ResetCode\Tests\KernelTestCase;
+use ControlBit\ResetCode\Service\ResetCodeManager;
+use ControlBit\ResetCode\Tests\KernelTestCase;
 
 final class ExtensionTest extends KernelTestCase
 {
